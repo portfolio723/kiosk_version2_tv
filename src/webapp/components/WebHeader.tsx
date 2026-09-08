@@ -22,13 +22,7 @@ export const WebHeader: React.FC<WebHeaderProps> = ({ experienceMode, onSwitchEx
   return (
     <header className="sticky top-0 z-50 w-full bg-[#07222B]/95 backdrop-blur-md border-b border-[#EFD2A6]/20 transition-all">
       {/* Top Notification / Experience Switch Bar */}
-      <div className="w-full bg-[#04171D] border-b border-[#EFD2A6]/10 px-4 sm:px-8 py-1.5 flex items-center justify-between text-[11px] sm:text-xs">
-        <div className="flex items-center gap-2 text-white/70">
-          <span className="hidden sm:inline font-medium tracking-wide">Padavala Bespoke Handlooms & Couture</span>
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EFD2A6]" />
-          <span className="text-[#EFD2A6]">Hyderabad · Vijayawada · Bangalore</span>
-        </div>
-
+      <div className="w-full bg-[#04171D] border-b border-[#EFD2A6]/10 px-4 sm:px-8 py-1.5 flex items-center justify-end text-[11px] sm:text-xs">
         {/* Experience Switcher (Web App <-> Kiosk TV) */}
         <div className="flex items-center gap-1.5 bg-[#0C2B35] px-2 py-0.5 rounded-full border border-[#EFD2A6]/30">
           <button
