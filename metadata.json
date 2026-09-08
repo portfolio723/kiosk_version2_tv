@@ -1,6 +1,6 @@
 {
-  "name": "Padavala Kiosk TV",
-  "description": "Luxury portrait touch kiosk for Padavala fashion fabrics, virtual AI try-on, look recreation, and bespoke retail inquiry.",
+  "name": "Padavala Fashion & AI Virtual Try-On",
+  "description": "Responsive luxury fashion web application and in-store interactive kiosk for Padavala fabrics, AI virtual try-on, lookbook, and custom tailoring.",
   "requestFramePermissions": ["camera", "microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { KioskScreen, Language } from '../types';
-import { Maximize2, Minimize2, Volume2, VolumeX, Monitor, Smartphone, Compass } from 'lucide-react';
+import { KioskScreen, Language, AppExperienceMode } from '../types';
+import { Maximize2, Minimize2, Volume2, VolumeX, Monitor, Smartphone, Compass, Globe, Tv } from 'lucide-react';
 import { playTouchFeedback } from '../utils/audio';
 
 interface KioskFrameProps {
@@ -10,6 +10,8 @@ interface KioskFrameProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onResetSession: () => void;
+  experienceMode?: AppExperienceMode;
+  onSwitchExperience?: (mode: AppExperienceMode) => void;
 }
 
 export const KioskFrame: React.FC<KioskFrameProps> = ({
@@ -19,6 +21,8 @@ export const KioskFrame: React.FC<KioskFrameProps> = ({
   language,
   onLanguageChange,
   onResetSession,
+  experienceMode = 'kiosk',
+  onSwitchExperience,
 }) => {
   const [scaleMode, setScaleMode] = useState<'responsive' | 'kiosk' | 'fill'>('responsive');
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -121,6 +125,29 @@ export const KioskFrame: React.FC<KioskFrameProps> = ({
 
         {/* Right Utility Actions */}
         <div className="flex items-center gap-3">
+          {/* Experience Switcher (Web App <-> Kiosk TV) */}
+          {onSwitchExperience && (
+            <div className="flex items-center gap-1 bg-[#0C2B35] p-1 rounded-lg border border-[#EFD2A6]/40">
+              <button
+                type="button"
+                onClick={() => onSwitchExperience('web')}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-white/80 hover:text-white font-bold text-xs hover:bg-white/10 transition-colors"
+                title="Switch to Customer Responsive Web App"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#EFD2A6]" />
+                <span className="hidden sm:inline">Web App</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => onSwitchExperience('kiosk')}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#EFD2A6] text-[#07222B] font-bold text-xs shadow-sm"
+              >
+                <Tv className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Kiosk TV</span>
+              </button>
+            </div>
+          )}
+
           {/* Language Switch */}
           <div className="flex items-center rounded-lg bg-[#0C2B35] border border-white/10 p-0.5 text-xs">
             {(['en', 'hi', 'te'] as const).map((l) => (

@@ -11,10 +11,12 @@ import {
   GarmentStyle,
   Fabric,
   CustomerSession,
+  AppExperienceMode,
 } from './types';
 import { FABRIC_CATALOG } from './data/fabrics';
 import { KioskFrame } from './components/KioskFrame';
 import { KioskBackground } from './components/KioskBackground';
+import { PadavalaWebApp } from './webapp/PadavalaWebApp';
 
 // Screen Components
 import { K1Attract } from './screens/K1Attract';
@@ -59,6 +61,7 @@ const DEFAULT_SESSION: CustomerSession = {
 };
 
 export function App() {
+  const [experienceMode, setExperienceMode] = useState<AppExperienceMode>('web');
   const [currentScreen, setCurrentScreen] = useState<KioskScreen>('K1');
   const [session, setSession] = useState<CustomerSession>(DEFAULT_SESSION);
 
@@ -240,6 +243,15 @@ export function App() {
     setCurrentScreen('K10');
   };
 
+  if (experienceMode === 'web') {
+    return (
+      <PadavalaWebApp
+        experienceMode={experienceMode}
+        onSwitchExperience={setExperienceMode}
+      />
+    );
+  }
+
   return (
     <KioskFrame
       currentScreen={currentScreen}
@@ -247,6 +259,8 @@ export function App() {
       language={session.language}
       onLanguageChange={handleLanguageChange}
       onResetSession={handleResetSession}
+      experienceMode={experienceMode}
+      onSwitchExperience={setExperienceMode}
     >
       <KioskBackground>
         {currentScreen === 'K1' && (

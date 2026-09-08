@@ -11,6 +11,50 @@ export type KioskScreen =
   | 'K9'
   | 'K10';
 
+export type WebAppScreen =
+  | 'W1' // Homepage / Landing
+  | 'W2' // Sign Up
+  | 'W3' // Login
+  | 'W4' // Profile / Dashboard
+  | 'W5' // Catalog Browse
+  | 'W6' // Try-On Flow
+  | 'W7'; // Lookbook
+
+export type TryOnStep =
+  | 'photo'    // W6a
+  | 'details'  // W6b
+  | 'style'    // W6c
+  | 'fabric'   // W6d
+  | 'result';  // W6e
+
+export type AppExperienceMode = 'web' | 'kiosk';
+
+export interface UserProfile {
+  id: string;
+  fullName: string;
+  phone: string;
+  email?: string;
+  avatarUrl?: string;
+  heightFeet: number;
+  heightInches: number;
+  size: ClothingSize;
+  bodyType: BodyType;
+  gender: Gender;
+  inquiriesCount: number;
+}
+
+export interface SavedLookItem {
+  id: string;
+  fabricId: string;
+  fabricName: string;
+  garment: GarmentStyle;
+  imageUrl: string;
+  metres: number;
+  estimatedCost: number;
+  date: string;
+  occasion?: string;
+}
+
 export type KioskMode =
   | 'try_on'
   | 'recreate'
